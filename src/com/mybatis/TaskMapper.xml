@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.TaskMapper">
+    <select id="findTaskByWorkerID" parameterType="int" resultType="Task">
+        select * from mytask where workerid=#{workerid}
+    </select>
+    <select id="findAllTask" resultType="Task">
+        select * from mytask
+    </select>
+    <select id="findTaskByState" parameterType="string" resultType="Task">
+        select * from mytask where taskstate=#{taskstate}
+    </select>
+    <select id="findTaskByProID" parameterType="int" resultType="Task">
+        select * from mytask where proid=#{proid}
+    </select>
+    <update id="updateTaskStByID" parameterType="task">
+        update mytask set taskstarttime=#{taskstarttime} where taskid=#{taskid}
+    </update>
+    <update id="updateTaskEtByID" parameterType="Task">
+        update mytask set taskendtime=#{taskendtime} where taskid=#{taskid}
+    </update>
+    <update id="updateTaskStateByID" parameterType="Task">
+        update mytask set taskstate=#{taskstate} where taskid=#{taskid}
+    </update>
+    <update id="updateTaskRateByID">
+        update mytask set taskrate=#{taskrate} where taskid=#{taskid}
+    </update>
+    <insert id="insertTask" parameterType="Task">
+        insert into mytask(taskid,taskname,proid,taskorder,taskstarttime,taskendtime,taskstate,taskrate,fatherid,workerid,entrust,postworkerid,entrusttime) values(#{taskid},#{taskname},#{proid},#{taskorder},#{taskstarttime},#{taskendtime},#{taskstate},#{taskrate},#{fatherid},#{workerid},#{entrust},#{postworkerid},#{entrusttime})
+    </insert>
+    <select id="findTaskByID" parameterType="int" resultType="Task">
+        select * from mytask where taskid=#{taskid}
+    </select>
+    <select id="findEntrustTaskByWorkerID" parameterType="int" resultType="Task">
+        select * from mytask where entrust=1 and postworkerid=#{postworkerid}
+    </select>
+    <update id="updateEntrustByID" parameterType="Task">
+        update mytask set entrust=#{entrust},postworkerid=#{postworkerid},entrusttime=#{entrusttime} where taskid=#{taskid}
+    </update>
+</mapper>

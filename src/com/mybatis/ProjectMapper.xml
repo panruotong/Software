@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.ProjectMapper">
+    <select id="findAllPro" resultType="Project">
+        select * from myproject
+    </select>
+    <select id="findProByState" parameterType="string" resultType="Project">
+        select * from myproject where prostate=#{prostate}
+    </select>
+    <select id="findProByID" parameterType="int" resultType="Project">
+        select * from myproject where proid=#{proid}
+    </select>
+    <update id="updateProStByID"  parameterType="Project">
+        update myproject set prostarttime=#{prostarttime} where proid=#{proid}
+    </update>
+    <update id="updateProEtByID" parameterType="Project">
+        update myproject set proendtime=#{proendtime} where proid=#{proid}
+    </update>
+    <update id="updateProStateByID" parameterType="Project">
+        update myproject set prostate=#{prostate} where proid=#{proid}
+    </update>
+    <update id="updateProRateByID" parameterType="Project">
+        update myproject set prorate=#{prorate} where proid=#{proid}
+    </update>
+    <insert id="insertProject" parameterType="Project">
+        insert into myproject(proid,proname,prostarttime,proendtime,prostate,prorate,path) values(#{proid},#{proname},#{prostarttime},#{proendtime},#{prostate},#{prorate},#{path})
+    </insert>
+    <select id="findProIDByName" parameterType="string" resultType="int">
+        select proid from myproject where proname=#{proname}
+    </select>
+</mapper>

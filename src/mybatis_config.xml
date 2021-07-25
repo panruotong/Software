@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--config.dtd--><configuration>
+    <properties resource="db.properties"></properties>
+    <typeAliases><!--起别名，因为xml文件中的类型名必须写包名等路径，因此设计别名可方便mapper.xml编程工作。-->
+        <!--typeAlias type="pojo.student" alias="student"/-->
+        <package name="pojo"/><!--一个包下有多个类，为减少工作量直接写入包名，则默认别名为类名-->
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="com.mybatis"/>
+    </mappers>
+</configuration>

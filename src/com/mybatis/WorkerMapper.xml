@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.WorkerMapper">
+    <select id="findWorkerByID" parameterType="int" resultType="Worker">
+        select * from myworker where workerid=#{workerid}
+    </select>
+    <select id="findWorkerByStateAndType" resultType="Worker">
+        select * from myworker where workerstate=#{para1} and worktype=#{para2}
+    </select>
+    <select id="findWorkerByType" resultType="Worker">
+        select * from myworker where worktype=#{worktype}
+    </select>
+    <select id="findAdmin" resultType="Worker">
+        select * from myworker where type=#{type}
+    </select>
+    <insert id="insertWorker" parameterType="Worker">
+        insert into myworker(workerid,type,password,workerstate,worktype) values(#{workerid},#{type},#{password},#{workerstate},#{worktype})
+    </insert>
+    <update id="updateWorkerState" parameterType="Worker">
+        update myworker set workerstate=#{workerstate} where workerid=#{workerid}
+    </update>
+</mapper>

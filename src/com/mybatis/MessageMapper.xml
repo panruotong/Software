@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.MessageMapper">
+    <select id="findMessageByRecieveID" parameterType="int" resultType="Message">
+        select * from message where recieveid=#{recieveid}
+    </select>
+    <select id="findMessageByID" parameterType="int" resultType="Message">
+        select * from message where messageid=#{messageid}
+    </select>
+    <insert id="insertMessage" parameterType="Message">
+        insert into message(messageid,sendid,recieveid,state,content) values(#{messageid},#{sendid},#{recieveid},#{state},#{content})
+    </insert>
+    <update id="updateMessageStateByRecieveID" parameterType="int">
+        update message set state=1 where recieveid=#{id}
+    </update>
+    <update id="updateMessageStateByMessageID" parameterType="int">
+        update message set state=1 where messageid=#{message}
+    </update>
+</mapper>
+
